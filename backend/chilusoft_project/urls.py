@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt import views as jwt_views
+from custom_auth import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,7 +25,8 @@ urlpatterns = [
     path('api/v1/token/', 
           jwt_views.TokenObtainPairView.as_view(), 
           name ='token_obtain_pair'),
-     path('api/v1/token/refresh/', 
+    path('api/v1/token/refresh/', 
           jwt_views.TokenRefreshView.as_view(), 
-          name ='token_refresh')
+          name ='token_refresh'),
+    path('api/v1/logout/', views.LogoutView.as_view(), name ='logout')
 ]
